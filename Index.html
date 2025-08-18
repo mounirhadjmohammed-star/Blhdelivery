@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BLH DELIVERY — Direction</title>
+  <meta name="theme-color" content="#1f7a4c" />
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    :root{--brand:#1f7a4c;--dark:#0f3d27;--muted:#6b7280}
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:#f7f7f7}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5e7eb;padding:10px;z-index:2}
+    .wrap{max-width:1100px;margin:0 auto;padding:10px}
+    .row{display:flex;gap:8px;align-items:center}
+    .logo{width:42px;height:42px;border-radius:10px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800}
+    .title{font-weight:800;color:var(--dark)}
+    .tabs{display:flex;gap:8px;overflow:auto}
+    .tab{border:1px solid #e5e7eb;background:#fff;border-radius:12px;padding:8px 10px;white-space:nowrap;cursor:pointer}
+    .tab.active{background:var(--brand);border-color:var(--brand);color:#fff}
+    main{padding:12px}
+    .grid{display:grid;gap:12px}
+    @media(min-width:900px){.grid2{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:repeat(3,1fr)}}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:12px}
+    input,select,button,textarea{font:inherit}
+    input,select,textarea{border:1px solid #e5e7eb;border-radius:10px;padding:10px;width:100%;background:#fff}
+    button{border-radius:10px;border:1px solid #e5e7eb;background:#fff;padding:10px 12px;cursor:pointer}
+    .btn{background:var(--brand);border-color:var(--brand);color:#fff}
+    table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+    th,td{padding:8px;border-top:1px solid #edf0ee;text-align:left;font-size:13px}
+    th{background:#f9fafb}
+    .muted{color:var(--muted);font-size:13px}
+    .kpi{display:flex;flex-direction:column;gap:4px;padding:10px;border:1px solid #edf0ee;border-radius:12px;background:#fff}
+    .kpi .v{font-weight:800;font-size:20px;color:var(--dark)}
+    .label{width:300px;border:1px dashed #cbd5e1;border-radius:12px;padding:12px}
+    .print-area{display:flex;gap:10px;flex-wrap:wrap}
+    .small{font-size:12px}
+    .login{max-width:420px;margin:20px auto}
+    .notice{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d;padding:8px;border-radius:10px;margin:10px 0}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap row" style="justify-content:space-between">
+    <div class="row">
+      <div class="logo">🚚</div>
+      <div style="margin-left:8px">
+        <div class="title">BLH DELIVERY</div>
+        <div class="muted small">PWA — Direction • Livreurs • Clients</div>
+      </div>
+    </div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="notice">
+    Utilisation immédiate. Ouvre ce lien en HTTPS puis menu Chrome → « Ajouter à l’écran d’accueil ».
+  </div>
+  <div id="view"></div>
+</main>
+
+<!-- zone d'impression d'étiquettes -->
+<div id="printRoot" class="print-area" style="display:none"></div>
+
+<script src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', ()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  }
+</script>
+</body>
+</html>
